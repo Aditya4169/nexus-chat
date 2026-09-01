@@ -213,7 +213,7 @@ export default function MessageInput({
           {isMenuOpen ? (
             <div
               ref={menuRef}
-              className="absolute bottom-full right-0 mb-3 w-48 rounded-lg border border-slate-200/50 bg-white shadow-[0_8px_32px_rgba(0,0,0,0.12)] animate-fade-in"
+              className="absolute bottom-full left-0 right-0 md:left-auto md:right-0 mb-3 mx-2 md:mx-0 max-w-[calc(100vw-1.5rem)] md:max-w-none md:w-48 rounded-lg border border-slate-200/50 bg-white shadow-[0_8px_32px_rgba(0,0,0,0.12)] animate-fade-in z-50"
             >
               <button
                 className="flex w-full items-center gap-3 px-4 py-3.5 text-left font-medium text-slate-900 transition-colors duration-150 hover:bg-teal-50/60 first:rounded-t-lg"
