@@ -46,7 +46,7 @@ export default function MessageList({ messages, currentUserId, isGroup = false }
   }, [messages])
 
   return (
-    <div className="min-h-0 flex-1 overflow-y-auto bg-gradient-to-b from-slate-50 to-white px-6 py-6">
+    <div className="min-h-0 flex-1 overflow-y-auto bg-gradient-to-b from-slate-50 to-white px-3 md:px-6 py-4 md:py-6">
       <div className="mx-auto flex max-w-3xl flex-col">
         {messages.map((message, index) => {
           const messageId = getId(message)

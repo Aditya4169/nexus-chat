@@ -1,4 +1,4 @@
-import { MoreVertical, Users } from 'lucide-react'
+import { ArrowLeft, MoreVertical, Users } from 'lucide-react'
 
 function getId(item) {
   return item?._id ?? item?.id
@@ -31,7 +31,7 @@ function formatLastSeen(value) {
   return `Last seen ${date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}`
 }
 
-export default function ChatHeader({ conversation, currentUser }) {
+export default function ChatHeader({ conversation, currentUser, onBackClick }) {
   const otherParticipant = getOtherParticipant(conversation, currentUser)
   const isGroup = conversation.type === 'group'
   const name = isGroup ? conversation.groupName : otherParticipant?.username
@@ -43,7 +43,17 @@ export default function ChatHeader({ conversation, currentUser }) {
       : formatLastSeen(otherParticipant?.lastSeen)
 
   return (
-    <header className="flex h-20 items-center gap-4 border-b border-slate-200/40 bg-white px-6 shadow-sm shadow-slate-200/15">
+    <header className="flex h-20 items-center gap-3 md:gap-4 border-b border-slate-200/40 bg-white px-3 md:px-6 shadow-sm shadow-slate-200/15">
+      {/* Back button - visible only on mobile */}
+      <button
+        className="md:hidden flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-slate-600 transition-all duration-200 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-teal-200"
+        type="button"
+        onClick={onBackClick}
+        aria-label="Back to conversations"
+      >
+        <ArrowLeft size={20} aria-hidden="true" />
+      </button>
+
       {isGroup ? (
         <div className="relative">
           <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-teal-600 text-white shadow-md ring-2 ring-white">

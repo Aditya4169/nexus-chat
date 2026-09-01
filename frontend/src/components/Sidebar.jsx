@@ -183,8 +183,8 @@ export default function Sidebar({
 
   return (
     <>
-      <aside className="flex h-full w-80 shrink-0 flex-col border-r border-slate-200/40 bg-slate-50/80">
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-5 py-6">
+      <aside className="flex h-full w-full md:w-80 shrink-0 flex-col border-r border-slate-200/40 bg-slate-50/80">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-3 md:px-5 py-6">
           <div className="mb-5 flex items-center justify-between">
             <div>
               <p className="text-xs font-bold uppercase tracking-wider text-teal-100">
@@ -226,7 +226,7 @@ export default function Sidebar({
           </div>
 
           {searchQuery.trim().length >= 2 ? (
-            <div className="absolute z-20 mt-2 w-72 overflow-hidden rounded-lg border border-slate-200/60 bg-white shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
+            <div className="absolute z-20 mt-2 w-[calc(100%-1.5rem)] md:w-72 left-3 md:left-auto right-3 md:right-auto overflow-hidden rounded-lg border border-slate-200/60 bg-white shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
               {searching ? (
                 <p className="px-4 py-4 text-sm font-medium text-slate-500">Searching...</p>
               ) : null}
@@ -264,7 +264,7 @@ export default function Sidebar({
           ) : null}
         </div>
 
-        <div className="min-h-0 flex-1 overflow-y-auto p-3">
+        <div className="min-h-0 flex-1 overflow-y-auto px-2 md:px-3 py-3">
           {sortedConversations.length === 0 ? (
             <div className="flex h-full items-center justify-center">
               <div className="text-center">

@@ -284,25 +284,30 @@ export default function Chat() {
 
   return (
     <main className="flex h-screen overflow-hidden bg-white">
-      <Sidebar
-        conversations={conversations}
-        activeConversationId={activeConversationId}
-        currentUser={user}
-        onSelectConversation={setActiveConversationId}
-        onConversationsUpdate={fetchConversations}
-      />
+      {/* Sidebar: hidden on mobile when conversation selected, visible otherwise */}
+      <div className={`${activeConversationId ? 'hidden md:flex' : 'flex md:flex'} flex-col`}>
+        <Sidebar
+          conversations={conversations}
+          activeConversationId={activeConversationId}
+          currentUser={user}
+          onSelectConversation={setActiveConversationId}
+          onConversationsUpdate={fetchConversations}
+        />
+      </div>
 
-      <section className="flex min-w-0 flex-1 flex-col">
-        <div className="flex h-16 items-center justify-between border-b border-slate-200/40 bg-white px-6 shadow-sm shadow-slate-200/15">
-          <div className="flex min-w-0 items-center gap-4">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-teal-600 text-white shadow-md ring-2 ring-white">
+      {/* Chat section: hidden on mobile when no conversation selected, visible when selected */}
+      <section className={`flex min-w-0 flex-1 flex-col ${activeConversationId ? 'flex md:flex' : 'hidden md:flex'}`}>
+        <div className="flex h-16 items-center justify-between border-b border-slate-200/40 bg-white px-3 md:px-6 shadow-sm shadow-slate-200/15">
+          <div className="flex min-w-0 items-center gap-3 md:gap-4">
+            {/* Logo visible only on desktop */}
+            <div className="hidden md:flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-teal-600 text-white shadow-md ring-2 ring-white">
               <MessageCircle size={22} aria-hidden="true" />
             </div>
             <div className="min-w-0">
-              <p className="truncate text-sm font-medium text-slate-500">
+              <p className="hidden md:block truncate text-sm font-medium text-slate-500">
                 Signed in as {user?.username ?? 'friend'}
               </p>
-              <h1 className="truncate text-xl font-bold tracking-tight text-slate-950">Nexus Chat</h1>
+              <h1 className="truncate text-lg md:text-xl font-bold tracking-tight text-slate-950">Nexus Chat</h1>
             </div>
           </div>
 
@@ -318,7 +323,7 @@ export default function Chat() {
 
         {activeConversation ? (
           <>
-            <ChatHeader conversation={activeConversation} currentUser={user} />
+            <ChatHeader conversation={activeConversation} currentUser={user} onBackClick={() => setActiveConversationId(null)} />
             <div className="flex min-h-0 flex-1 flex-col">
               {loadingMessages ? (
                 <div className="flex flex-1 items-center justify-center bg-gradient-to-b from-slate-50 to-white p-6">

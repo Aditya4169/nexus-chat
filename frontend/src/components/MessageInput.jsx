@@ -159,7 +159,7 @@ export default function MessageInput({
   }
 
   return (
-    <footer className="border-t border-slate-200/40 bg-white px-5 py-4 shadow-sm shadow-slate-200/15">
+    <footer className="border-t border-slate-200/40 bg-white px-3 md:px-5 py-3 md:py-4 shadow-sm shadow-slate-200/15">
       {selectedFile ? (
         <div className="mb-4 flex items-center justify-between rounded-lg border border-teal-200/50 bg-teal-50/60 px-4 py-3 text-sm text-teal-900">
           <div className="min-w-0">
