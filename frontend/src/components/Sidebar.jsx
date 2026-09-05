@@ -141,13 +141,13 @@ export default function Sidebar({
   function renderAvatar(conversation) {
     const name = getConversationName(conversation, currentUser)
     const avatar = getConversationAvatar(conversation, currentUser)
-    const otherParticipant = getOtherParticipant(conversation, currentUser)
+      const otherParticipant = getOtherParticipant(conversation, currentUser)
     const isOnline = otherParticipant?.status === 'online'
 
     if (conversation.type === 'group') {
       return (
         <div className="relative">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-teal-600 text-white shadow-md ring-2 ring-white">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-300 to-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 ring-1 ring-amber-300/30">
             <Users size={20} aria-hidden="true" />
           </div>
         </div>
@@ -163,7 +163,7 @@ export default function Sidebar({
             alt={`${name} avatar`}
           />
           {isOnline ? (
-            <div className="absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-teal-500 shadow-sm" />
+              <div className="animate-pulse absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-slate-900 bg-teal-500 shadow-[0_0_10px_rgba(20,184,166,0.65)]" />
           ) : null}
         </div>
       )
@@ -175,7 +175,7 @@ export default function Sidebar({
           {getInitial(name)}
         </div>
         {isOnline ? (
-          <div className="absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-teal-500 shadow-sm" />
+          <div className="animate-pulse absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-slate-900 bg-teal-500 shadow-[0_0_10px_rgba(20,184,166,0.65)]" />
         ) : null}
       </div>
     )
@@ -183,17 +183,17 @@ export default function Sidebar({
 
   return (
     <>
-      <aside className="flex h-full w-full md:w-80 shrink-0 flex-col border-r border-slate-200/40 bg-slate-50/80">
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-3 md:px-5 py-6">
+      <aside className="flex h-full w-full shrink-0 flex-col border-r border-white/10 bg-slate-950/70 backdrop-blur-xl md:w-80">
+        <div className="border-b border-white/10 bg-slate-900/60 px-3 py-6 md:px-5">
           <div className="mb-5 flex items-center justify-between">
             <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-teal-100">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-amber-400">
                 Nexus Chat
               </p>
-              <h1 className="mt-1 text-xl font-bold tracking-tight text-white">Conversations</h1>
+              <h1 className="mt-1 text-xl font-bold tracking-[0.02em] text-slate-100">Conversations</h1>
             </div>
             <button
-              className="rounded-lg bg-white/20 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-teal-600/20 backdrop-blur transition-all duration-200 hover:bg-white/30 hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-white/20"
+              className="rounded-lg border border-amber-300/20 bg-amber-400/10 px-4 py-2.5 text-sm font-semibold text-amber-300 shadow-lg shadow-amber-500/10 backdrop-blur transition-all duration-300 hover:scale-[1.02] hover:bg-amber-400/20 hover:shadow-[0_0_18px_rgba(245,158,11,0.18)] active:scale-95 focus:outline-none focus:ring-4 focus:ring-amber-400/20"
               type="button"
               onClick={() => setIsGroupModalOpen(true)}
             >
@@ -208,14 +208,15 @@ export default function Sidebar({
               aria-hidden="true"
             />
             <input
-              className="w-full rounded-lg border border-slate-200/40 bg-white px-10 py-3 text-sm font-medium text-slate-950 outline-none transition-all duration-200 placeholder:text-slate-400 focus:border-teal-400 focus:bg-white focus:ring-2 focus:ring-teal-200"
+              className="w-full rounded-lg border border-white/10 bg-black/20 px-10 py-3 text-sm font-medium text-slate-100 outline-none transition-all duration-300 placeholder:text-slate-500 focus:border-amber-400/60 focus:bg-black/30 focus:ring-2 focus:ring-amber-400/10"
+                            className="w-full rounded-lg border border-white/10 bg-black/20 px-10 py-3 text-sm font-medium text-slate-100 outline-none transition-all duration-300 placeholder:text-slate-500 focus:border-amber-400/60 focus:bg-black/30 focus:ring-2 focus:ring-amber-400/10"
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
               placeholder="Search users..."
             />
             {searchQuery ? (
               <button
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 transition-colors duration-200 hover:text-slate-600"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 transition-colors duration-200 hover:text-amber-300"
                 type="button"
                 onClick={() => setSearchQuery('')}
                 aria-label="Clear search"
@@ -226,7 +227,7 @@ export default function Sidebar({
           </div>
 
           {searchQuery.trim().length >= 2 ? (
-            <div className="absolute z-20 mt-2 w-[calc(100%-1.5rem)] md:w-72 left-3 md:left-auto right-3 md:right-auto overflow-hidden rounded-lg border border-slate-200/60 bg-white shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
+            <div className="absolute z-20 mt-2 w-[calc(100%-1.5rem)] md:w-72 left-3 md:left-auto right-3 md:right-auto overflow-hidden rounded-lg border border-white/10 bg-slate-900/95 shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-xl">
               {searching ? (
                 <p className="px-4 py-4 text-sm font-medium text-slate-500">Searching...</p>
               ) : null}
@@ -238,7 +239,7 @@ export default function Sidebar({
               ) : null}
               {searchResults.map((user) => (
                 <button
-                  className="flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors duration-200 hover:bg-teal-50/50"
+                  className="flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors duration-200 hover:bg-amber-400/10"
                   key={getId(user)}
                   type="button"
                   onClick={() => handleStartDirect(user)}
@@ -251,11 +252,11 @@ export default function Sidebar({
                       alt={`${user.username} avatar`}
                     />
                   ) : (
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-100 to-teal-50 text-sm font-semibold text-teal-700">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-300 to-amber-500 text-sm font-semibold text-slate-950">
                       {getInitial(user.username)}
                     </div>
                   )}
-                  <span className="min-w-0 flex-1 truncate text-sm font-medium text-slate-800">
+                  <span className="min-w-0 flex-1 truncate text-sm font-medium text-slate-200">
                     {user.username}
                   </span>
                 </button>
@@ -268,10 +269,10 @@ export default function Sidebar({
           {sortedConversations.length === 0 ? (
             <div className="flex h-full items-center justify-center">
               <div className="text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-teal-50">
-                  <MessageCircle size={28} className="text-teal-600" aria-hidden="true" />
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-amber-400/10">
+                  <MessageCircle size={28} className="text-amber-400" aria-hidden="true" />
                 </div>
-                <p className="text-sm font-semibold text-slate-600">No conversations yet</p>
+                <p className="text-sm font-semibold text-slate-300">No conversations yet</p>
                 <p className="mt-1 text-xs text-slate-500">Search for users or create a group to get started</p>
               </div>
             </div>
@@ -290,27 +291,28 @@ export default function Sidebar({
 
               return (
                 <button
-                  className={`group flex w-full gap-3.5 rounded-xl px-4 py-4 text-left transition-all duration-200 ${
+                  className={`group animate-row-enter flex w-full gap-3.5 rounded-xl border px-4 py-4 text-left transition-all duration-300 hover:scale-[1.01] ${
                     isActive
-                      ? 'bg-teal-50/90 shadow-[0_2px_12px_rgba(20,184,166,0.15)] ring-1 ring-teal-200/60'
-                      : 'hover:bg-white/60'
+                      ? 'border-amber-400/25 bg-amber-400/10 shadow-[0_0_22px_rgba(245,158,11,0.08)]'
+                      : 'border-transparent hover:border-white/10 hover:bg-white/5 hover:shadow-[0_0_18px_rgba(255,255,255,0.04)]'
                   }`}
                   key={conversationId}
                   type="button"
                   onClick={() => onSelectConversation(conversationId)}
+                  style={{ animationDelay: `${Math.min(sortedConversations.indexOf(conversation) * 45, 360)}ms` }}
                 >
                   {renderAvatar(conversation)}
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center justify-between gap-2">
-                      <p className={`truncate text-sm font-semibold ${isActive ? 'text-slate-950' : 'text-slate-900'}`}>{name}</p>
+                      <p className={`truncate text-sm font-semibold ${isActive ? 'text-amber-200' : 'text-slate-200'}`}>{name}</p>
                       {timestamp ? (
-                        <span className="shrink-0 text-xs font-medium text-slate-400">{timestamp}</span>
+                        <span className="shrink-0 text-xs font-medium text-slate-500">{timestamp}</span>
                       ) : null}
                     </div>
                     <div className="mt-1.5 flex items-center gap-2">
-                      <p className="min-w-0 flex-1 truncate text-sm text-slate-500 group-hover:text-slate-600">{preview}</p>
+                      <p className="min-w-0 flex-1 truncate text-sm text-slate-500 group-hover:text-slate-400">{preview}</p>
                       {unreadCount > 0 ? (
-                        <span className="flex shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-600 to-teal-700 px-2 py-1 text-xs font-bold text-white shadow-lg shadow-teal-600/30 min-w-6">
+                        <span className="animate-badge-pop flex min-w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-300 to-amber-500 px-2 py-1 text-xs font-bold text-slate-950 shadow-lg shadow-amber-500/20">
                           {unreadCount}
                         </span>
                       ) : null}

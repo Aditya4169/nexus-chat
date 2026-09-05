@@ -46,7 +46,7 @@ export default function MessageList({ messages, currentUserId, isGroup = false }
   }, [messages])
 
   return (
-    <div className="min-h-0 flex-1 overflow-y-auto bg-gradient-to-b from-slate-50 to-white px-3 md:px-6 py-4 md:py-6">
+    <div className="min-h-0 flex-1 overflow-y-auto bg-gradient-to-b from-slate-950 via-slate-900 to-black px-3 py-4 md:px-6 md:py-6">
       <div className="mx-auto flex max-w-3xl flex-col">
         {messages.map((message, index) => {
           const messageId = getId(message)
@@ -59,7 +59,7 @@ export default function MessageList({ messages, currentUserId, isGroup = false }
 
           return (
             <div
-              className={`flex animate-fade-in ${isOwnMessage ? 'justify-end' : 'justify-start'} ${
+              className={`flex animate-message-pop ${isOwnMessage ? 'justify-end' : 'justify-start'} ${
                 isGroupedWithPrevious ? 'mt-1' : 'mt-6'
               } first:mt-0`}
               key={messageId}
@@ -74,14 +74,14 @@ export default function MessageList({ messages, currentUserId, isGroup = false }
                 <div
                   className={`rounded-2xl px-4 py-2.5 ${
                     isOwnMessage
-                      ? 'rounded-br-md bg-gradient-to-br from-teal-500 to-teal-600 text-white shadow-lg shadow-teal-600/25'
-                      : 'rounded-bl-md border border-slate-100 bg-white text-slate-900 shadow-sm'
+                      ? 'rounded-br-md border border-amber-500/40 bg-gradient-to-br from-slate-800 to-slate-950 text-amber-50 shadow-[0_0_18px_rgba(245,158,11,0.08)]'
+                      : 'rounded-bl-md border border-white/10 bg-white/5 text-slate-100 shadow-lg shadow-black/10 backdrop-blur'
                   }`}
                 >
                   {message.messageType === 'image' ? (
                     <a href={fileUrl} target="_blank" rel="noreferrer">
                       <img
-                        className="max-h-80 rounded-xl border border-slate-100 object-contain shadow-md"
+                        className="max-h-80 rounded-xl border border-white/10 object-contain shadow-md"
                         src={fileUrl}
                         alt={message.fileName || 'Shared image'}
                       />
@@ -93,7 +93,7 @@ export default function MessageList({ messages, currentUserId, isGroup = false }
                       className={`flex items-center gap-3 rounded-xl px-3 py-2 transition ${
                         isOwnMessage
                           ? 'bg-white/15 hover:bg-white/25'
-                          : 'bg-slate-100/60 hover:bg-slate-200'
+                          : 'bg-white/5 hover:bg-white/10'
                       }`}
                       href={fileUrl}
                       download={message.fileName}
@@ -116,13 +116,13 @@ export default function MessageList({ messages, currentUserId, isGroup = false }
 
                 <div
                   className={`mt-1.5 flex items-center gap-1 px-1 text-xs ${
-                    isOwnMessage ? 'justify-end text-slate-400' : 'justify-start text-slate-400'
+                    isOwnMessage ? 'justify-end text-slate-500' : 'justify-start text-slate-500'
                   }`}
                 >
                   <span>{formatTime(message.createdAt)}</span>
                   {isOwnMessage ? (
                     hasBeenSeen(message, currentUserId) ? (
-                      <CheckCheck className="text-teal-300" size={14} aria-label="Seen" />
+                      <CheckCheck className="text-amber-400" size={14} aria-label="Seen" />
                     ) : (
                       <Check size={14} aria-label="Delivered" />
                     )

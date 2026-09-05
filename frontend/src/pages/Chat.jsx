@@ -283,7 +283,7 @@ export default function Chat() {
   }
 
   return (
-    <main className="flex h-screen overflow-hidden bg-white">
+    <main className="animate-page-enter flex h-screen overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-black text-slate-100">
       {/* Sidebar: hidden on mobile when conversation selected, visible otherwise */}
       <div className={`${activeConversationId ? 'hidden md:flex' : 'flex md:flex'} flex-col`}>
         <Sidebar
@@ -297,22 +297,22 @@ export default function Chat() {
 
       {/* Chat section: hidden on mobile when no conversation selected, visible when selected */}
       <section className={`flex min-w-0 flex-1 flex-col ${activeConversationId ? 'flex md:flex' : 'hidden md:flex'}`}>
-        <div className="flex h-16 items-center justify-between border-b border-slate-200/40 bg-white px-3 md:px-6 shadow-sm shadow-slate-200/15">
+        <div className="flex h-16 items-center justify-between border-b border-white/10 bg-slate-900/60 px-3 shadow-sm shadow-black/20 backdrop-blur-xl md:px-6">
           <div className="flex min-w-0 items-center gap-3 md:gap-4">
             {/* Logo visible only on desktop */}
-            <div className="hidden md:flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-teal-600 text-white shadow-md ring-2 ring-white">
+            <div className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-300 to-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 ring-1 ring-amber-300/30 md:flex">
               <MessageCircle size={22} aria-hidden="true" />
             </div>
             <div className="min-w-0">
-              <p className="hidden md:block truncate text-sm font-medium text-slate-500">
+              <p className="hidden truncate text-sm font-medium text-slate-500 md:block">
                 Signed in as {user?.username ?? 'friend'}
               </p>
-              <h1 className="truncate text-lg md:text-xl font-bold tracking-tight text-slate-950">Nexus Chat</h1>
+              <h1 className="truncate text-lg font-bold tracking-[0.03em] text-slate-100 md:text-xl">Nexus Chat</h1>
             </div>
           </div>
 
           <button
-            className="flex items-center gap-2 rounded-lg border border-slate-200/60 bg-white px-4 py-2.5 font-semibold text-slate-700 shadow-sm shadow-slate-200/15 transition-all duration-200 hover:border-slate-300 hover:bg-slate-50 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-teal-200"
+            className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 font-semibold text-slate-300 shadow-sm shadow-black/15 transition-all duration-300 hover:border-amber-400/30 hover:bg-amber-400/10 hover:text-amber-200 hover:shadow-[0_0_18px_rgba(245,158,11,0.12)] active:scale-95 focus:outline-none focus:ring-2 focus:ring-amber-400/20"
             type="button"
             onClick={handleLogout}
           >
@@ -326,12 +326,12 @@ export default function Chat() {
             <ChatHeader conversation={activeConversation} currentUser={user} onBackClick={() => setActiveConversationId(null)} />
             <div className="flex min-h-0 flex-1 flex-col">
               {loadingMessages ? (
-                <div className="flex flex-1 items-center justify-center bg-gradient-to-b from-slate-50 to-white p-6">
+                <div className="flex flex-1 items-center justify-center bg-gradient-to-b from-slate-950 via-slate-900 to-black p-6">
                   <div className="text-center">
                     <div className="mx-auto mb-4 flex gap-1">
-                      <div className="h-2 w-2 rounded-full bg-teal-500 animate-bounce" style={{animationDelay: '0ms'}}></div>
-                      <div className="h-2 w-2 rounded-full bg-teal-500 animate-bounce" style={{animationDelay: '150ms'}}></div>
-                      <div className="h-2 w-2 rounded-full bg-teal-500 animate-bounce" style={{animationDelay: '300ms'}}></div>
+                      <div className="h-2 w-2 rounded-full bg-amber-400 animate-bounce" style={{animationDelay: '0ms'}}></div>
+                      <div className="h-2 w-2 rounded-full bg-amber-400 animate-bounce" style={{animationDelay: '150ms'}}></div>
+                      <div className="h-2 w-2 rounded-full bg-amber-400 animate-bounce" style={{animationDelay: '300ms'}}></div>
                     </div>
                     <p className="text-sm font-medium text-slate-500">Loading messages...</p>
                   </div>
@@ -344,12 +344,19 @@ export default function Chat() {
                 />
               )}
 
-              <div className="border-t border-slate-200/40 bg-white px-5 py-3.5 shadow-sm shadow-slate-200/15">
+              <div className="border-t border-white/10 bg-slate-900/40 px-5 py-3.5 shadow-sm shadow-black/20">
                 {typingLabel ? (
-                  <p className="text-sm font-semibold text-teal-600">{typingLabel}</p>
+                  <p className="flex items-center gap-1 text-sm font-semibold text-teal-400">
+                    {typingLabel}
+                    <span className="inline-flex gap-0.5" aria-hidden="true">
+                      <span className="animate-bounce" style={{ animationDelay: '0ms' }}>.</span>
+                      <span className="animate-bounce" style={{ animationDelay: '150ms' }}>.</span>
+                      <span className="animate-bounce" style={{ animationDelay: '300ms' }}>.</span>
+                    </span>
+                  </p>
                 ) : null}
                 {messageError ? (
-                  <div className="mt-3 rounded-lg border border-red-200/50 bg-red-50/60 px-4 py-3 text-sm font-medium text-red-700 animate-fade-in">
+                  <div className="mt-3 rounded-lg border border-red-400/20 bg-red-950/40 px-4 py-3 text-sm font-medium text-red-300 animate-fade-in">
                     {messageError}
                   </div>
                 ) : null}
@@ -363,26 +370,26 @@ export default function Chat() {
             </div>
           </>
         ) : (
-          <div className="flex min-h-0 flex-1 items-center justify-center bg-gradient-to-b from-slate-50 to-white p-6">
+          <div className="flex min-h-0 flex-1 items-center justify-center bg-gradient-to-b from-slate-950 via-slate-900 to-black p-6">
             <div className="max-w-sm text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-teal-50 shadow-md">
-                <MessageCircle size={32} className="text-teal-600" aria-hidden="true" />
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-amber-400/10 shadow-md shadow-amber-500/10">
+                <MessageCircle size={32} className="text-amber-400" aria-hidden="true" />
               </div>
-              <h2 className="mt-6 text-xl font-bold tracking-tight text-slate-950">
+              <h2 className="mt-6 text-xl font-bold tracking-[0.02em] text-slate-100">
                 Select a conversation
               </h2>
-              <p className="mt-2 text-sm font-medium text-slate-600">
+              <p className="mt-2 text-sm font-medium text-slate-400">
                 Choose an existing chat or search for someone in the sidebar to get started.
               </p>
               {loadingConversations ? (
                 <div className="mt-6 flex items-center justify-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-teal-600 animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                  <div className="h-2 w-2 rounded-full bg-teal-600 animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                  <div className="h-2 w-2 rounded-full bg-teal-600 animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                  <div className="h-2 w-2 rounded-full bg-amber-400 animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                  <div className="h-2 w-2 rounded-full bg-amber-400 animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                  <div className="h-2 w-2 rounded-full bg-amber-400 animate-bounce" style={{ animationDelay: '300ms' }}></div>
                 </div>
               ) : null}
               {conversationError ? (
-                <div className="mt-6 rounded-lg border border-red-200/50 bg-red-50/60 px-4 py-3.5 text-sm font-medium text-red-700">
+                <div className="mt-6 rounded-lg border border-red-400/20 bg-red-950/40 px-4 py-3.5 text-sm font-medium text-red-300">
                   {conversationError}
                 </div>
               ) : null}

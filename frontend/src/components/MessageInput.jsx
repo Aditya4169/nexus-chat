@@ -156,15 +156,15 @@ export default function MessageInput({
   }
 
   return (
-    <footer className="border-t border-slate-200/40 bg-white px-3 md:px-5 py-3 md:py-4 shadow-sm shadow-slate-200/15">
+    <footer className="border-t border-white/10 bg-slate-900/60 px-3 py-3 shadow-sm shadow-black/20 backdrop-blur-xl md:px-5 md:py-4">
       {selectedFile ? (
-        <div className="mb-4 flex items-center justify-between rounded-lg border border-teal-200/50 bg-teal-50/60 px-4 py-3 text-sm text-teal-900">
+        <div className="mb-4 flex items-center justify-between rounded-lg border border-amber-400/20 bg-amber-400/10 px-4 py-3 text-sm text-amber-100">
           <div className="min-w-0">
             <p className="truncate font-semibold">{selectedFile.name}</p>
-            <p className="mt-0.5 text-xs font-medium text-teal-700">{Math.ceil(selectedFile.size / 1024)} KB</p>
+            <p className="mt-0.5 text-xs font-medium text-amber-300">{Math.ceil(selectedFile.size / 1024)} KB</p>
           </div>
           <button
-            className="rounded-full p-1 text-teal-700 transition-all duration-200 hover:bg-teal-100 hover:text-teal-950 hover:scale-110"
+            className="rounded-full p-1 text-amber-300 transition-all duration-300 hover:scale-110 hover:bg-amber-400/20 hover:text-amber-100"
             type="button"
             onClick={() => setSelectedFile(null)}
             aria-label="Remove attachment"
@@ -175,7 +175,7 @@ export default function MessageInput({
       ) : null}
 
       {error ? (
-        <div className="mb-4 rounded-lg border border-red-200/50 bg-red-50/60 px-4 py-3 text-sm font-medium text-red-700 animate-fade-in">
+        <div className="mb-4 rounded-lg border border-red-400/20 bg-red-950/40 px-4 py-3 text-sm font-medium text-red-300 animate-fade-in">
           {error}
         </div>
       ) : null}
@@ -199,7 +199,7 @@ export default function MessageInput({
         <div className="relative">
           <button
             ref={paperclipButtonRef}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100/80 text-slate-600 transition-all duration-200 hover:bg-slate-200 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-teal-200"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-400 transition-all duration-300 hover:bg-amber-400/10 hover:text-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-400/20"
             type="button"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Attach file"
@@ -210,22 +210,22 @@ export default function MessageInput({
           {isMenuOpen ? (
             <div
               ref={menuRef}
-              className="absolute bottom-full left-0 right-0 md:left-auto md:right-0 mb-3 mx-2 md:mx-0 max-w-[calc(100vw-1.5rem)] md:max-w-none md:w-48 rounded-lg border border-slate-200/50 bg-white shadow-[0_8px_32px_rgba(0,0,0,0.12)] animate-fade-in z-50"
+              className="absolute bottom-full left-0 right-0 z-50 mx-2 mb-3 max-w-[calc(100vw-1.5rem)] rounded-lg border border-white/10 bg-slate-900/95 shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-xl animate-fade-in md:left-auto md:right-0 md:mx-0 md:max-w-none md:w-48"
             >
               <button
-                className="flex w-full items-center gap-3 px-4 py-3.5 text-left font-medium text-slate-900 transition-colors duration-150 hover:bg-teal-50/60 first:rounded-t-lg"
+                className="flex w-full items-center gap-3 px-4 py-3.5 text-left font-medium text-slate-200 transition-colors duration-150 hover:bg-amber-400/10 first:rounded-t-lg"
                 type="button"
                 onClick={handlePhotoVideoSelect}
               >
-                <Image size={20} className="shrink-0 text-teal-600" aria-hidden="true" />
+                <Image size={20} className="shrink-0 text-amber-400" aria-hidden="true" />
                 <span>Photo & Video</span>
               </button>
               <button
-                className="flex w-full items-center gap-3 px-4 py-3.5 text-left font-medium text-slate-900 transition-colors duration-150 hover:bg-teal-50/60 last:rounded-b-lg"
+                className="flex w-full items-center gap-3 px-4 py-3.5 text-left font-medium text-slate-200 transition-colors duration-150 hover:bg-amber-400/10 last:rounded-b-lg"
                 type="button"
                 onClick={handleDocumentSelect}
               >
-                <FileText size={20} className="shrink-0 text-teal-600" aria-hidden="true" />
+                <FileText size={20} className="shrink-0 text-amber-400" aria-hidden="true" />
                 <span>Document</span>
               </button>
             </div>
@@ -233,7 +233,7 @@ export default function MessageInput({
         </div>
 
         <textarea
-          className="max-h-32 min-h-10 flex-1 resize-none rounded-full border border-slate-200/50 bg-slate-100 px-5 py-3 text-sm font-medium leading-6 text-slate-950 outline-none transition-all duration-200 placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-teal-500"
+          className="max-h-32 min-h-10 flex-1 resize-none rounded-full border border-white/10 bg-black/20 px-5 py-3 text-sm font-medium leading-6 text-slate-100 outline-none transition-all duration-300 placeholder:text-slate-500 focus:border-amber-400/60 focus:bg-black/30 focus:ring-2 focus:ring-amber-400/20"
           value={text}
           onChange={handleTextChange}
           onKeyDown={handleKeyDown}
@@ -242,7 +242,7 @@ export default function MessageInput({
         />
 
         <button
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-teal-600 to-teal-700 text-white shadow-lg shadow-teal-600/30 transition-all duration-200 hover:shadow-lg hover:shadow-teal-600/40 active:scale-95 focus:outline-none focus:ring-2 focus:ring-teal-200 disabled:cursor-not-allowed disabled:opacity-50 disabled:scale-100"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 transition-all duration-300 hover:shadow-[0_0_20px_rgba(245,158,11,0.35)] active:scale-95 focus:outline-none focus:ring-2 focus:ring-amber-400/20 disabled:cursor-not-allowed disabled:scale-100 disabled:opacity-50"
           type="button"
           onClick={handleSend}
           disabled={sending || (!text.trim() && !selectedFile)}

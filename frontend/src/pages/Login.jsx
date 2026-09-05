@@ -29,23 +29,24 @@ export default function Login() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 px-4 py-10">
-      <section className="w-full max-w-md rounded-2xl border border-slate-200/60 bg-white/95 backdrop-blur p-8 shadow-[0_8px_32px_rgba(0,0,0,0.08)]">
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-black px-4 py-10">
+      <div className="pointer-events-none absolute -left-20 top-1/4 h-72 w-72 rounded-full bg-amber-500/10 blur-3xl" />
+      <section className="animate-page-enter relative w-full max-w-md rounded-2xl border border-white/10 bg-slate-900/65 p-8 shadow-[0_0_70px_rgba(245,158,11,0.12)] backdrop-blur-xl">
         <div className="mb-8 flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-teal-500 to-teal-600 text-white shadow-lg shadow-teal-500/30">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-amber-300 to-amber-500 text-slate-950 shadow-lg shadow-amber-500/30">
             <MessageCircle size={24} aria-hidden="true" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold tracking-tight text-slate-950">Welcome back</h1>
-            <p className="mt-1 text-sm font-medium text-slate-600">Sign in to Nexus Chat</p>
+            <h1 className="text-2xl font-bold tracking-[0.02em] text-slate-100">Welcome back</h1>
+            <p className="mt-1 text-sm font-medium text-slate-400">Sign in to Nexus Chat</p>
           </div>
         </div>
 
         <form className="space-y-5" onSubmit={handleSubmit}>
           <label className="block">
-            <span className="text-sm font-semibold text-slate-700">Email</span>
+            <span className="text-sm font-semibold text-slate-300">Email</span>
             <input
-              className="mt-2.5 w-full rounded-lg border border-slate-300/60 bg-slate-50/40 px-4 py-3.5 text-slate-950 outline-none transition-all duration-200 placeholder:text-slate-400 focus:border-teal-500 focus:bg-white focus:ring-4 focus:ring-teal-100"
+              className="mt-2.5 w-full rounded-lg border border-white/10 bg-black/20 px-4 py-3.5 text-slate-100 outline-none transition-all duration-300 placeholder:text-slate-500 focus:border-amber-400/70 focus:bg-black/30 focus:ring-4 focus:ring-amber-400/10"
               type="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
@@ -56,9 +57,9 @@ export default function Login() {
           </label>
 
           <label className="block">
-            <span className="text-sm font-semibold text-slate-700">Password</span>
+            <span className="text-sm font-semibold text-slate-300">Password</span>
             <input
-              className="mt-2.5 w-full rounded-lg border border-slate-300/60 bg-slate-50/40 px-4 py-3.5 text-slate-950 outline-none transition-all duration-200 placeholder:text-slate-400 focus:border-teal-500 focus:bg-white focus:ring-4 focus:ring-teal-100"
+              className="mt-2.5 w-full rounded-lg border border-white/10 bg-black/20 px-4 py-3.5 text-slate-100 outline-none transition-all duration-300 placeholder:text-slate-500 focus:border-amber-400/70 focus:bg-black/30 focus:ring-4 focus:ring-amber-400/10"
               type="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
@@ -75,7 +76,7 @@ export default function Login() {
           ) : null}
 
           <button
-            className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-teal-600 to-teal-700 px-4 py-3.5 font-semibold text-white shadow-lg shadow-teal-600/30 transition-all duration-200 hover:shadow-lg hover:shadow-teal-600/40 hover:scale-[1.01] focus:outline-none focus:ring-4 focus:ring-teal-100 disabled:cursor-not-allowed disabled:opacity-60"
+            className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-amber-400 to-amber-500 px-4 py-3.5 font-semibold text-slate-950 shadow-lg shadow-amber-500/20 transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_0_24px_rgba(245,158,11,0.35)] active:scale-95 focus:outline-none focus:ring-4 focus:ring-amber-400/20 disabled:cursor-not-allowed disabled:opacity-60"
             type="submit"
             disabled={submitting}
           >
@@ -84,9 +85,9 @@ export default function Login() {
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-slate-500">
+        <p className="mt-6 text-center text-sm text-slate-400">
           New to Nexus Chat?{' '}
-          <Link className="font-semibold text-teal-700 hover:text-teal-800" to="/register">
+          <Link className="font-semibold text-amber-400 transition-colors hover:text-amber-300" to="/register">
             Create an account
           </Link>
         </p>
