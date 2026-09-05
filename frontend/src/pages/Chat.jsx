@@ -358,7 +358,6 @@ export default function Chat() {
               <MessageInput
                 conversationId={activeConversationId}
                 onConversationsRefresh={fetchConversations}
-                onFileMessageCreated={appendMessage}
                 socket={socket}
               />
             </div>

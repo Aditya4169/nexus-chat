@@ -92,6 +92,11 @@ const sendMessage = async (req, res) => {
 
     await conversation.save();
 
+    const io = req.app.get('io');
+    if (io) {
+      io.to(conversationId).emit('newMessage', newMessage);
+    }
+
     res.status(201).json(newMessage);
   } catch (error) {
     console.error('Send message error:', error.message);

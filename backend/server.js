@@ -32,6 +32,8 @@ const io = new Server(httpServer, {
   cors: { origin: frontendUrl, methods: ['GET', 'POST'] }
 });
 
+app.set('io', io);
+
 // Initialize Socket.IO handlers (auth, connection, events, etc.)
 initializeSocket(io);
 

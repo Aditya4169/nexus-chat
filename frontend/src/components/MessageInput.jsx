@@ -5,7 +5,6 @@ import api from '../api/axios'
 export default function MessageInput({
   conversationId,
   socket,
-  onFileMessageCreated,
   onConversationsRefresh,
 }) {
   const [text, setText] = useState('')
@@ -128,12 +127,10 @@ export default function MessageInput({
           formData.append('text', trimmedText)
         }
 
-        const { data } = await api.post('/messages', formData, {
+        await api.post('/messages', formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
         })
 
-        // REST uploads may not broadcast in older backend code, so keep sender UI current.
-        onFileMessageCreated?.(data)
         onConversationsRefresh?.()
       } else {
         socket?.emit('sendMessage', {
